@@ -1,0 +1,7 @@
+FROM osixia/openldap::1.2.3
+
+LABEL maintainer="mathieu.brunot at monogramm dot io"
+
+# Add requirements for common extenions
+ADD bootstrap /container/service/slapd/assets/config/bootstrap
+RUN rm /container/service/slapd/assets/config/bootstrap/schema/mmc/mail.schema
