@@ -24,7 +24,7 @@ OpenLDAP is a community developed LDAP software.
 https://hub.docker.com/r/monogramm/docker-openldap/
 
 -	`1.1.11` `1.1` (*images/1.1-debian/Dockerfile*)
--	`1.2.3` `1.2` (*images/1.2-debian/Dockerfile*)
+-	`1.2.3` `1.2` `latest` (*images/1.2-debian/Dockerfile*)
 
 ## How to run this image ?
 
