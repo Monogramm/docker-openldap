@@ -1,4 +1,4 @@
-FROM osixia/openldap::%%VERSION%%
+FROM osixia/openldap:%%VERSION%%
 
 LABEL maintainer="mathieu.brunot at monogramm dot io"
 
