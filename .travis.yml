@@ -16,11 +16,9 @@ before_script:
   - dir="images/${VERSION}${VARIANT:+-$VARIANT}"
 
 script:
-  - travis_retry docker build -t "$image" "$dir"
-
-after_script:
+  - travis_retry docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` -t "$image" "$dir"
   - docker images
-  - docker run --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` --name "$name" -d "$image" "$dir"
+  - docker run --name "$name" -d "$image" "$dir" && sleep 60
   - docker ps
   - docker logs "$name"
 
