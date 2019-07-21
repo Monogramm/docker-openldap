@@ -4,8 +4,10 @@
 
 [![License: GPL v3][uri_license_image]][uri_license]
 [![Build Status](https://travis-ci.org/Monogramm/docker-openldap.svg)](https://travis-ci.org/Monogramm/docker-openldap)
-[![Docker Automated buid](https://img.shields.io/docker/build/monogramm/docker-openldap.svg)](https://hub.docker.com/r/monogramm/docker-openldap/)
+[![Docker Automated buid](https://img.shields.io/docker/cloud/build/monogramm/docker-openldap.svg)](https://hub.docker.com/r/monogramm/docker-openldap/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/monogramm/docker-openldap.svg)](https://hub.docker.com/r/monogramm/docker-openldap/)
+[![](https://images.microbadger.com/badges/version/monogramm/docker-openldap.svg)](https://microbadger.com/images/monogramm/docker-openldap)
+[![](https://images.microbadger.com/badges/image/monogramm/docker-openldap.svg)](https://microbadger.com/images/monogramm/docker-openldap)
 
 # OpenLDAP custom Docker
 
@@ -31,6 +33,7 @@ https://hub.docker.com/r/monogramm/docker-openldap/
 See OpenLDAP base image documentation for details.
 
 > [OpenLDAP GitHub](https://github.com/osixia/docker-openldap)
+
 > [OpenLDAP DockerHub](https://hub.docker.com/r/osixia/openldap/)
 
 # Questions / Issues
