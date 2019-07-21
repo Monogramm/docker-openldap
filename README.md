@@ -32,9 +32,9 @@ https://hub.docker.com/r/monogramm/docker-openldap/
 
 See OpenLDAP base image documentation for details.
 
-> [OpenLDAP GitHub](https://github.com/osixia/docker-openldap)
+> [Osixia OpenLDAP GitHub](https://github.com/osixia/docker-openldap)
 
-> [OpenLDAP DockerHub](https://hub.docker.com/r/osixia/openldap/)
+> [Osixia OpenLDAP DockerHub](https://hub.docker.com/r/osixia/openldap/)
 
 # Questions / Issues
 If you got any questions or problems using the image, please visit our [Github Repository](https://github.com/Monogramm/docker-openldap) and write an issue.
