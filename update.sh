@@ -15,9 +15,9 @@ function version_greater_or_equal() {
 
 dockerRepo="monogramm/docker-openldap"
 # Retrieve automatically the latest versions
-latests=(
-	'1.1.11' '1.2.3'
-)
+latests=( $( curl -fsSL 'https://api.github.com/repos/osixia/docker-openldap/tags' |tac|tac| \
+	grep -oE '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' | \
+	sort -urV ) )
 
 # Remove existing images
 echo "reset docker images"
@@ -31,24 +31,23 @@ travisEnv=
 for latest in "${latests[@]}"; do
 	version=$(echo "$latest" | cut -d. -f1-2)
 
-	if [ -d "$version" ]; then
-		continue
-	fi
-
 	# Only add versions >= "$min_version"
 	if version_greater_or_equal "$version" "$min_version"; then
 
 		for variant in "${variants[@]}"; do
-			echo "updating $latest [$version-$variant]"
-
 			# Create the version directory with a Dockerfile.
 			dir="images/$version-$variant"
+			if [ -d "$dir" ]; then
+				continue
+			fi
+			echo "generating $latest [$version-$variant]"
 			mkdir -p "$dir"
 
 			template="Dockerfile-$variant.template"
 			cp "$template" "$dir/Dockerfile"
 
 			cp -r "bootstrap/" "$dir/"
+			cp -r "hooks/" "$dir/"
 
 			# Replace the variables.
 			sed -ri -e '

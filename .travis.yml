@@ -20,7 +20,7 @@ script:
 
 after_script:
   - docker images
-  - docker run --name "$name" -d "$image" "$dir"
+  - docker run --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` --name "$name" -d "$image" "$dir"
   - docker ps
   - docker logs "$name"
 
@@ -28,5 +28,5 @@ notifications:
   email: false
 
 env: # Environments
-    - VERSION=1.2 VARIANT=debian
     - VERSION=1.1 VARIANT=debian
+    - VERSION=1.2 VARIANT=debian
