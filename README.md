@@ -1,8 +1,8 @@
 
-[uri_license]: http://www.gnu.org/licenses/gpl.html
-[uri_license_image]: https://img.shields.io/badge/License-GPL%20v3-blue.svg
+[uri_license]: https://opensource.org/licenses/MIT
+[uri_license_image]: https://img.shields.io/badge/license-MIT-blue
 
-[![License: GPL v3][uri_license_image]][uri_license]
+[![License: MIT][uri_license_image]][uri_license]
 [![Build Status](https://travis-ci.org/Monogramm/docker-openldap.svg)](https://travis-ci.org/Monogramm/docker-openldap)
 [![Docker Automated buid](https://img.shields.io/docker/cloud/build/monogramm/docker-openldap.svg)](https://hub.docker.com/r/monogramm/docker-openldap/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/monogramm/docker-openldap.svg)](https://hub.docker.com/r/monogramm/docker-openldap/)
