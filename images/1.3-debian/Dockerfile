@@ -1,6 +1,6 @@
-FROM osixia/openldap:1.2.5
+FROM osixia/openldap:1.3.0
 
-ARG VERSION=1.2.5
+ARG VERSION=1.3.0
 ARG VCS_REF
 ARG BUILD_DATE
 

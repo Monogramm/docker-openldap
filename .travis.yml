@@ -28,3 +28,5 @@ notifications:
 env: # Environments
     - VERSION=1.1 VARIANT=debian
     - VERSION=1.2 VARIANT=debian
+    - VERSION=1.3 VARIANT=debian
+    - VERSION=1.4 VARIANT=debian
