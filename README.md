@@ -1,7 +1,3 @@
-
-[uri_license]: https://opensource.org/licenses/MIT
-[uri_license_image]: https://img.shields.io/badge/license-MIT-blue
-
 [![License: MIT][uri_license_image]][uri_license]
 [![Build Status](https://travis-ci.org/Monogramm/docker-openldap.svg)](https://travis-ci.org/Monogramm/docker-openldap)
 [![Docker Automated buid](https://img.shields.io/docker/cloud/build/monogramm/docker-openldap.svg)](https://hub.docker.com/r/monogramm/docker-openldap/)
@@ -23,10 +19,12 @@ OpenLDAP is a community developed LDAP software.
 
 ## Supported tags
 
-https://hub.docker.com/r/monogramm/docker-openldap/
+<https://hub.docker.com/r/monogramm/docker-openldap/>
 
--	`1.1.11` `1.1` (*images/1.1-debian/Dockerfile*)
--	`1.2.3` `1.2` `latest` (*images/1.2-debian/Dockerfile*)
+-   `1.1` (_images/1.1-debian/Dockerfile_)
+-   `1.2` (_images/1.2-debian/Dockerfile_)
+-   `1.3` (_images/1.3-debian/Dockerfile_)
+-   `1.4` `latest` (_images/1.4-debian/Dockerfile_)
 
 ## How to run this image ?
 
@@ -36,5 +34,10 @@ See OpenLDAP base image documentation for details.
 
 > [Osixia OpenLDAP DockerHub](https://hub.docker.com/r/osixia/openldap/)
 
-# Questions / Issues
+## Questions / Issues
+
 If you got any questions or problems using the image, please visit our [Github Repository](https://github.com/Monogramm/docker-openldap) and write an issue.
+
+[uri_license]: https://opensource.org/licenses/MIT
+
+[uri_license_image]: https://img.shields.io/badge/license-MIT-blue

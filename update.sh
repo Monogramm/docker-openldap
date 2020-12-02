@@ -43,11 +43,11 @@ for latest in "${latests[@]}"; do
 			echo "generating $latest [$version-$variant]"
 			mkdir -p "$dir"
 
-			template="Dockerfile-$variant.template"
-			cp "$template" "$dir/Dockerfile"
+			template="Dockerfile.$variant"
+			cp "template/$template" "$dir/Dockerfile"
 
-			cp -r "bootstrap/" "$dir/"
-			cp -r "hooks/" "$dir/"
+			cp -r "template/bootstrap/" "$dir/"
+			cp -r "template/hooks/" "$dir/"
 
 			# Replace the variables.
 			sed -ri -e '
@@ -57,10 +57,10 @@ for latest in "${latests[@]}"; do
 
 			travisEnv='\n    - VERSION='"$version"' VARIANT='"$variant$travisEnv"
 
-			if [[ $1 == 'build' ]]; then
+			if [[ "$1" == 'build' ]]; then
 				tag="$version-$variant"
 				echo "Build Dockerfile for ${tag}"
-				docker build -t ${dockerRepo}:${tag} $dir
+				docker build -t "${dockerRepo}:${tag}" "$dir"
 			fi
 		done
 	fi
