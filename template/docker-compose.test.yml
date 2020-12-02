@@ -1,0 +1,75 @@
+version: "2.3"
+
+services:
+  # https://docs.docker.com/docker-hub/builds/automated-testing/
+  sut:
+    build:
+      context: ./test
+      dockerfile: Dockerfile
+    depends_on:
+      openldap:
+        condition: service_started
+    volumes_from:
+      - openldap
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+
+  openldap:
+    # For development or CI, tag build from local Dockerfile
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args: 
+        - TAG=${TAG}
+        - VCS_REF=${VCS_REF}
+        - BUILD_DATE=${BUILD_DATE}
+    image: ${IMAGE_NAME}
+    container_name: openldap
+    hostname: ldap
+    domainname: ${DOMAIN}
+    #restart: always
+    command: --copy-service --loglevel warning
+    expose:
+      - '389'
+      - '636'
+    ports:
+      - "389:389"
+      - "636:636"
+    tty: true
+    stdin_open: true
+    volumes:
+      - /srv/openldap/lib/ldap/:/var/lib/ldap
+      - /srv/openldap/slapd.d/:/etc/ldap/slapd.d
+      - /srv/openldap/ldif/:/srv/ldif
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      BOOTSTRAP: "true"
+      LDAP_LOG_LEVEL: "256"
+      LDAP_ORGANISATION: "${LDAP_ORGANISATION}"
+      HOSTNAME: "ldap.${DOMAIN}" # important: same as domainname and LDAP_DOMAIN
+      LDAP_DOMAIN: "ldap.${DOMAIN}"
+      LDAP_BASE_DN: "${LDAP_BASE}"
+      LDAP_ADMIN_PASSWORD: "${LDAP_ADMIN_PASSWORD}"
+      LDAP_CONFIG_PASSWORD: "${LDAP_CONFIG_PASSWORD}"
+      LDAP_READONLY_USER: "true"
+      LDAP_READONLY_USER_USERNAME: "readonly"
+      LDAP_READONLY_USER_PASSWORD: "${LDAP_READONLY_PASSWORD}"
+      LDAP_RFC2307BIS_SCHEMA: "false"
+      LDAP_BACKEND: "${LDAP_BACKEND}"
+      LDAP_TLS: "false"
+      #LDAP_TLS_CRT_FILENAME: "cert.pem"
+      #LDAP_TLS_KEY_FILENAME: "privkey.pem"
+      #LDAP_TLS_CA_CRT_FILENAME: "fullchain.pem"
+      #LDAP_TLS_ENFORCE: "true"
+      #LDAP_TLS_CIPHER_SUITE: "NORMAL:SECURE256:-VERS-SSL3.0"
+      #LDAP_TLS_PROTOCOL_MIN: "3.1"
+      #LDAP_TLS_VERIFY_CLIENT: "try"
+      LDAP_REPLICATION: "false"
+      #LDAP_REPLICATION_CONFIG_SYNCPROV: "binddn="cn=admin,cn=config" bindmethod=simple credentials=$LDAP_CONFIG_PASSWORD searchbase="cn=config" type=refreshAndPersist retry="60 +" timeout=1 starttls=critical"
+      #LDAP_REPLICATION_DB_SYNCPROV: "binddn="cn=admin,$LDAP_BASE_DN" bindmethod=simple credentials=$LDAP_ADMIN_PASSWORD searchbase="$LDAP_BASE_DN" type=refreshAndPersist interval=00:00:00:10 retry="60 +" timeout=1 starttls=critical"
+      #LDAP_REPLICATION_HOSTS: "['ldaps://ldap.${DOMAIN}','ldaps://ldap2.${DOMAIN}']"
+      KEEP_EXISTING_CONFIG: "false"
+      LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
+      LDAP_SSL_HELPER_PREFIX: "ldap"

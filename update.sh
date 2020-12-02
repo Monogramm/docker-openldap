@@ -48,6 +48,10 @@ for latest in "${latests[@]}"; do
 
 			cp -r "template/bootstrap/" "$dir/"
 			cp -r "template/hooks/" "$dir/"
+			cp -r "template/test/" "$dir/"
+
+			cp -r "template/docker-compose.test.yml" "$dir/"
+			cp -r "template/.env" "$dir/"
 
 			# Replace the variables.
 			sed -ri -e '
