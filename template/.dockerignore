@@ -1,0 +1,4 @@
+# Ignore CI test files during docker build
+docker-compose.test.yml
+.dockertags
+.env

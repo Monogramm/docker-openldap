@@ -1,5 +1,5 @@
 os: linux
-dist: trusty
+dist: buster
 
 services: docker
 
@@ -11,8 +11,8 @@ branches:
 
 before_install:
   - env | sort
-  - dir="$(pwd)/images/${VERSION}${VARIANT:+-$VARIANT}"
-  - IMAGE_NAME="monogramm/docker-openldap:${VERSION}${VARIANT:+-$VARIANT}-travis"
+  - dir="$(pwd)/images/${VERSION}-${VARIANT}"
+  - IMAGE_NAME="monogramm/docker-openldap:${VERSION}${VARIANT}-travis"
 
 install:
   - cd "$dir"

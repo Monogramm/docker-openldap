@@ -30,6 +30,7 @@ echo "update docker images"
 travisEnv=
 for latest in "${latests[@]}"; do
 	version=$(echo "$latest" | cut -d. -f1-2)
+	major=$(echo "$latest" | cut -d. -f1-1)
 
 	# Only add versions >= "$min_version"
 	if version_greater_or_equal "$version" "$min_version"; then
@@ -59,6 +60,14 @@ for latest in "${latests[@]}"; do
 				s/%%VERSION%%/'"$latest"'/g;
 			' "$dir/Dockerfile"
 
+			# Create a list of "alias" tags for DockerHub post_push
+			if [ "$latest" = 'master' ]; then
+				echo "master-$variant " > "$dir/.dockertags"
+			else
+				echo "$latest-$variant $version-$variant " > "$dir/.dockertags"
+			fi
+
+			# Add Travis-CI env var
 			travisEnv='\n    - VERSION='"$version"' VARIANT='"$variant$travisEnv"
 
 			if [[ "$1" == 'build' ]]; then
